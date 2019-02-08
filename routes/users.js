@@ -14,25 +14,25 @@ router.get('/bar', function (ctx, next) {
  * 查 ---------->链表查询
  */
 router.get('/getOrder', async function (ctx) {
-  // const res = await Order.find().populate({
-  //   path  : 'uid',
-  //   model : User,
-  //   select: '_id phone status'
-  // }).exec()
+  const res = await Order.find().populate({
+    path  : 'uid',
+    model : User,
+    select: '_id phone status'
+  }).exec()
 
   // 下面我简单介绍一些$lookup中的参数：
   // from： 需要关联的表【 orders】
   // localField: 【product】 表需要关联的键。
   // foreignField：【 orders】 的matching key。
   // as： 对应的外键集合的数据，【 因为可能是一对多的， 对吧】
-  const res = await Order.aggregate([{
-    $lookup: {
-      from        : 'user',
-      localField  : 'uid',
-      foreignField: '_id',
-      as          : "user_docs"
-    }
-  }])
+  // const res = await Order.aggregate([{
+  //   $lookup: {
+  //     from        : 'user',
+  //     localField  : 'uid',
+  //     foreignField: '_id',
+  //     as          : "user_docs"
+  //   }
+  // }])
   ctx.body = {
     code: 0,
     data: res

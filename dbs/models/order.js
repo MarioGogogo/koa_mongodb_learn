@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 /*定义数据模式*/
 var OrderSchema = new mongoose.Schema({
   uid: {
-    type: Schema.Types.objectId,
+    type: mongoose.Schema.ObjectId,
     ref : 'user'
   },
   amount: {
