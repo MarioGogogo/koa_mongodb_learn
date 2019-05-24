@@ -7,13 +7,15 @@ const bodyparser = require('koa-bodyparser')
 const logger     = require('koa-logger')
 
 const mongoose = require("mongoose");
+mongoose.Promise = global.Promise;
 const dbConfig = require("./dbs/config")
-
-
 
 const index   = require('./routes/index')
 const users   = require('./routes/users')
 const student = require('./routes/student')
+
+const  Methods = require('./util') ;
+
 // error handler
 onerror(app)
 
@@ -43,15 +45,18 @@ app.use(users.routes(), users.allowedMethods())
 app.use(student.routes(), student.allowedMethods())
 
 //链接数据库
-mongoose.connect(dbConfig.dbs, {
-  useNewUrlParser: true
+mongoose.connect(dbConfig.dbs,{ useNewUrlParser: true },function () {
+   console.log('数据库链接成功')
+  Methods();
 })
-
-
 
 // error-handling
 app.on('error', (err, ctx) => {
   console.error('server error', err, ctx)
 });
+
+app.listen(4455,()=>{
+  console.log('http://localhost:4455')
+})
 
 module.exports = app

@@ -10,7 +10,7 @@ router.get('/', function (ctx, next) {
 router.get('/bar', function (ctx, next) {
   ctx.body = 'this is a users/bar response'
 })
-/** 
+/**
  * 查 ---------->链表查询
  */
 router.get('/getOrder', async function (ctx) {
@@ -51,7 +51,7 @@ router.get('/getOrder', async function (ctx) {
 //   },
 
 // ]
-/** 
+/**
  * 增
  */
 router.post('/addUser', async function (ctx) {
@@ -86,7 +86,7 @@ router.post('/addOrder', async function (ctx) {
     code: code
   }
 })
-/** 
+/**
  * 改
  */
 // router.post('/updatePerson', async function (ctx) {
@@ -99,7 +99,7 @@ router.post('/addOrder', async function (ctx) {
 //     code: 0
 //   }
 // })
-/** 
+/**
  * 删
  */
 // router.get('/removePerson', async function (ctx) {
@@ -110,12 +110,5 @@ router.post('/addOrder', async function (ctx) {
 //     code: 0
 //   }
 // })
-
-
-
-
-
-
-
 
 module.exports = router

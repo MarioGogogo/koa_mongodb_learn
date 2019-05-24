@@ -4,6 +4,12 @@ var Schema = mongoose.Schema;
 /*定义数据模式*/
 var UserSchema = new mongoose.Schema({
   phone : String,
+  name:String,
+  age:{
+    type:Number,
+    default:0,
+  },
+  city:String,
   status: String,
   meta  : {
     createAt: {
@@ -14,8 +20,10 @@ var UserSchema = new mongoose.Schema({
       type   : Date,
       default: Date.now()
     }
-  }
-  /*更新时间的*/
+  },
+  products: [{type: Schema.Types.ObjectId, ref: 'product'}],
+  comments: [{type: Schema.Types.ObjectId, ref: 'comment'}]
+
 });
 
 module.exports = mongoose.model('user', UserSchema, "user")
